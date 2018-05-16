@@ -1,3 +1,6 @@
+from Board import Board
+
+
 class Cell:
     board = None
     coordinate = (-1, -1)
@@ -6,10 +9,10 @@ class Cell:
     hasMine = False
     numberOfMines = 0
 
-    def __init__(self, coords, board):
+    def __init__(self, coords: tuple, board: Board, hasMine: bool):
         self.coordinate = (coords[0], coords[1])
         self.board = board
-        self.calculateNumberOfMines()
+        self.hasMine = hasMine
 
     def calculateNumberOfMines(self):
         try:
@@ -31,3 +34,21 @@ class Cell:
                 self.numberOfMines += 1
         except IndexError:
             pass
+
+    def open(self):
+        self.isOpened = True
+
+    def flag(self):
+        self.hasFlag = True
+
+    def __str__(self):
+        if self.hasFlag:
+            return "⚑"
+        elif not self.isOpened:
+            return "⃞"
+        else:
+            if self.hasMine:
+                return "💣"
+            else:
+                return self.numberOfMines
+
