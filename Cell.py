@@ -100,7 +100,8 @@ class Cell:
             self.board.numCurrOpened += 1
 
     def flag(self):
-        self.hasFlag = not self.hasFlag
+        if not self.isOpened:
+            self.hasFlag = not self.hasFlag
 
     def __str__(self):
         if self.hasFlag:
