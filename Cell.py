@@ -107,9 +107,9 @@ class Cell:
         if self.hasFlag:
             return "⚑ "
         elif not self.isOpened:
-            return "= "
+            return "⚀ "
         else:
             if self.hasMine:
-                return "* "
+                return "☼ "
             else:
                 return str(self.numberOfMines) + " "
