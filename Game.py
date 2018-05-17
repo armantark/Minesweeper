@@ -11,11 +11,13 @@ HARDROWS = 16
 HARDCOLS = 30
 HARDMINES = 99
 
+
 class Game:
     board = None
     isFlagSelect = False
 
     def __init__(self):
+        pass
 
     def play(self):
         quitGame = ''
@@ -27,7 +29,10 @@ class Game:
     def openingMenu(self):
         print("💣Welcome to Minesweeper💣\n")
         difficulty = ''
-        while difficulty.lower() != 'e' or 'm' or 'h' or 'c':
+        while difficulty.lower() != 'e' \
+                and difficulty.lower() != 'm' \
+                and difficulty.lower() != 'h' \
+                and difficulty.lower() != 'c':
             difficulty = input("[E]asy, [m]edium, [h]ard, or [c]ustom?\n")
         if difficulty.lower() == 'e':
             self.board = Board(EASYROWS, EASYCOLS, EASYMINES)
@@ -46,33 +51,48 @@ class Game:
             self.board = Board(int(customrows), int(customcols), int(custommines))
 
     def game(self):
-        pattern = re.compile("(\d+) *, *(\d+)")
-        win = False
-        while not win:
-            for x in range(self.board.numRows - 1):
-                for y in range(self.board.numColumns - 1):
-                    print(self.board.table[x][y])
-                    if y == self.board.numColumns - 1:
-                        print("\n")
+        pattern = re.compile("(\d+) *, *(\d+)")  # regex for coords
+        while True:
+            self.printBoard()
+            if self.board.numCurrOpened == self.board.numRows * self.board.numColumns - self.board.numMines:
+                print("YOU WIN!")
+                break
             prompt = ""
-            while prompt.lower() == "normal" or "flag" or pattern.match(prompt):
-                prompt = input("Enter coordinates in the form \"x, y\"\nor write selection type (normal or flag): ")
-
-                if prompt.lower() == "normal":
+            while prompt.lower() == "normal" or prompt.lower() == "flag" or not pattern.match(prompt):
+                prompt = input("Enter coordinates in the form \"x, y\"\nor write selection type ([n]ormal or [f]lag): ")
+                if prompt.lower() == "normal" or prompt.lower() == "n":
                     self.isFlagSelect = False
-                elif prompt.lower() == "flag":
+                elif prompt.lower() == "flag" or prompt.lower() == "f":
                     self.isFlagSelect = True
             m = pattern.match(prompt)
             if m:
-                x = m.groups(1)
-                y = m.groups(2)
+                x = int(m.groups()[0]) - 1
+                y = int(m.groups()[1]) - 1
                 if not self.isFlagSelect:
-                    self.board.table[x][y].open()
-                    if self.board.table[x][y].hasMine:
-                        print("Game over!\n")
-                        break
+                    try:
+                        self.board.table[x][y].open()
+                        if self.board.table[x][y].hasMine:
+                            self.printBoard()
+                            print("Game over!\n")
+                            break
+                    except IndexError:
+                        print("Bad coords!")
                 else:
                     self.board.table[x][y].flag()
 
-
-
+    # this should be __str__ of board, will move later
+    def printBoard(self):
+        print("  ", end='')
+        for i in range(self.board.numColumns):
+            print(i + 1, end='')
+            print(" ", end='')
+        print("\n\n", end='')
+        print("1 ", end='')
+        for x in range(self.board.numRows):
+            for y in range(self.board.numColumns):
+                print(self.board.table[x][y], end='')
+                if y == self.board.numColumns - 1:
+                    print("\n", end='')
+                    if (x != self.board.numRows - 1):
+                        print(x + 2, end='')
+                        print(" ", end='')
