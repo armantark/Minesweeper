@@ -54,6 +54,10 @@ class Game:
         pattern = re.compile("(\d+) *, *(\d+)")  # regex for coords
         while True:
             self.printBoard()
+            if not self.isFlagSelect:
+                print("Current selection type: Normal")
+            else:
+                print("Current selection type: Flag")
             if self.board.numCurrOpened == self.board.numRows * self.board.numColumns - self.board.numMines:
                 print("YOU WIN!")
                 break
