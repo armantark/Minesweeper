@@ -70,8 +70,8 @@ class Game:
                     self.isFlagSelect = True
             m = pattern.match(prompt)
             if m:
-                x = int(m.groups()[0]) - 1
-                y = int(m.groups()[1]) - 1
+                y = int(m.groups()[0]) - 1
+                x = int(m.groups()[1]) - 1
                 if not self.isFlagSelect:
                     try:
                         self.board.table[x][y].open()

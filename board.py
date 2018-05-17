@@ -20,7 +20,7 @@ class Board:
     def randomizeBoard(self):
         randomindices = set([])
         while len(randomindices) != self.numMines:
-            randomindices.add((randint(0, self.numRows - 1), randint(0, self.numColumns - 1)))
+            randomindices.add((randint(0, self.numColumns - 1), randint(0, self.numRows - 1)))
         for y in range(self.numRows):
             for x in range(self.numColumns):
                 hasMine = False
