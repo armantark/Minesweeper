@@ -53,7 +53,10 @@ class Game:
     def game(self):
         pattern = re.compile("(\d+) *, *(\d+)")  # regex for coords
         while True:
-            self.printBoard()
+            try:
+                print(self.board)
+            except TypeError:
+                pass
             if self.board.numCurrOpened == self.board.numRows * self.board.numColumns - self.board.numMines:
                 print("YOU WIN!")
                 break
@@ -76,48 +79,10 @@ class Game:
                     try:
                         self.board.table[x][y].open()
                         if self.board.table[x][y].hasMine:
-                            self.printBoard()
+                            print(self.board)
                             print("Game over!\n")
                             break
                     except IndexError:
                         print("Bad coords!")
                 else:
                     self.board.table[x][y].flag()
-
-    # this should be __str__ of board, will move later
-    def printBoard(self):
-        print("  ", end='')
-        if len(str(self.board.numRows)) == 2:
-            print(" ", end='')
-        for i in range(self.board.numColumns):
-            if len(str(i + 1)) == 2:
-                print(str(i + 1)[0], end='')
-            else:
-                print(i + 1, end='')
-            print(" ", end='')
-
-        if len(str(self.board.numColumns)) == 2:
-            print('')
-            print("  ", end='')
-            if len(str(self.board.numRows)) == 2:
-                print(" ", end='')
-            for i in range(self.board.numColumns):
-                if len(str(i + 1)) == 2:
-                    print(str(i + 1)[1], end='')
-                else:
-                    print(" ", end='')
-                print(" ", end='')
-        print("\n")
-        if len(str(self.board.numRows)) == 2:
-            print(" ", end='')
-        print("1 ", end='')
-        for y in range(self.board.numRows):
-            for x in range(self.board.numColumns):
-                print(self.board.table[x][y], end='')
-                if x == self.board.numColumns - 1:
-                    print("\n", end='')
-                    if y != self.board.numRows - 1:
-                        if len(str(self.board.numRows)) == 2 and len(str(y + 2)) != 2:
-                            print(" ", end='')
-                        print(y + 2, end='')
-                        print(" ", end='')

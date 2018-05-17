@@ -31,3 +31,39 @@ class Board:
             for x in range(self.numColumns):
                 self.table[x][y].calculateNumberOfMines()
 
+    def __str__(self):
+        print("  ", end='')
+        if len(str(self.numRows)) == 2:
+            print(" ", end='')
+        for i in range(self.numColumns):
+            if len(str(i + 1)) == 2:
+                print(str(i + 1)[0], end='')
+            else:
+                print(i + 1, end='')
+            print(" ", end='')
+
+        if len(str(self.numColumns)) == 2:
+            print('')
+            print("  ", end='')
+            if len(str(self.numRows)) == 2:
+                print(" ", end='')
+            for i in range(self.numColumns):
+                if len(str(i + 1)) == 2:
+                    print(str(i + 1)[1], end='')
+                else:
+                    print(" ", end='')
+                print(" ", end='')
+        print("\n")
+        if len(str(self.numRows)) == 2:
+            print(" ", end='')
+        print("1 ", end='')
+        for y in range(self.numRows):
+            for x in range(self.numColumns):
+                print(self.table[x][y], end='')
+                if x == self.numColumns - 1:
+                    print("\n", end='')
+                    if y != self.numRows - 1:
+                        if len(str(self.numRows)) == 2 and len(str(y + 2)) != 2:
+                            print(" ", end='')
+                        print(y + 2, end='')
+                        print(" ", end='')

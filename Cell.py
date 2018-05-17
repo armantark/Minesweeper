@@ -61,9 +61,11 @@ class Cell:
             pass
 
     def open(self):
-        if self.hasMine:
+        if self.hasFlag:
+            pass
+        elif self.hasMine:
             self.isOpened = True
-        if not self.isOpened and not self.hasMine:
+        elif not self.isOpened and not self.hasMine:
             self.isOpened = True
             x = self.coordinate[0]
             y = self.coordinate[1]
