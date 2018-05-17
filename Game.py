@@ -42,11 +42,11 @@ class Game:
             self.board = Board(HARDROWS, HARDCOLS, HARDMINES)
         else:
             customrows, customcols, custommines = '', '', ''
-            while not customrows.isnumeric():
-                customrows = input("Number rows: ")
-            while not customcols.isnumeric():
-                customcols = input("Number columns: ")
-            while not custommines.isnumeric() and custommines > int(customcols) * int(customrows):
+            while not customrows.isnumeric() or len(customrows) > 2:
+                customrows = input("Number rows (can only be 2 digit number): ")
+            while not customcols.isnumeric() or len(customcols) > 2:
+                customcols = input("Number columns (can only be 2 digit number): ")
+            while not custommines.isnumeric() or int(custommines) > int(customcols) * int(customrows):
                 custommines = input("Number mines (cannot be more than rows * cols): ")
             self.board = Board(int(customrows), int(customcols), int(custommines))
 
@@ -87,16 +87,37 @@ class Game:
     # this should be __str__ of board, will move later
     def printBoard(self):
         print("  ", end='')
-        for i in range(self.board.numColumns):
-            print(i + 1, end='')
+        if len(str(self.board.numRows)) == 2:
             print(" ", end='')
-        print("\n\n", end='')
+        for i in range(self.board.numColumns):
+            if len(str(i + 1)) == 2:
+                print(str(i + 1)[0], end='')
+            else:
+                print(i + 1, end='')
+            print(" ", end='')
+
+        if len(str(self.board.numColumns)) == 2:
+            print('')
+            print("  ", end='')
+            if len(str(self.board.numRows)) == 2:
+                print(" ", end='')
+            for i in range(self.board.numColumns):
+                if len(str(i + 1)) == 2:
+                    print(str(i + 1)[1], end='')
+                else:
+                    print(" ", end='')
+                print(" ", end='')
+        print("\n")
+        if len(str(self.board.numRows)) == 2:
+            print(" ", end='')
         print("1 ", end='')
         for x in range(self.board.numRows):
             for y in range(self.board.numColumns):
                 print(self.board.table[x][y], end='')
                 if y == self.board.numColumns - 1:
                     print("\n", end='')
-                    if (x != self.board.numRows - 1):
+                    if x != self.board.numRows - 1:
+                        if len(str(self.board.numRows)) == 2 and len(str(x + 2)) != 2:
+                            print(" ", end='')
                         print(x + 2, end='')
                         print(" ", end='')
