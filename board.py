@@ -21,13 +21,13 @@ class Board:
         randomindices = set([])
         while len(randomindices) != self.numMines:
             randomindices.add((randint(0, self.numRows - 1), randint(0, self.numColumns - 1)))
-        for x in range(self.numRows):
-            for y in range(self.numColumns):
+        for y in range(self.numRows):
+            for x in range(self.numColumns):
                 hasMine = False
                 if (x, y) in randomindices:
                     hasMine = True
                 self.table[x][y] = Cell((x, y), self, hasMine)
-        for x in range(self.numRows):
-            for y in range(self.numColumns):
+        for y in range(self.numRows):
+            for x in range(self.numColumns):
                 self.table[x][y].calculateNumberOfMines()
 

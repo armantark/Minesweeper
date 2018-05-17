@@ -111,13 +111,13 @@ class Game:
         if len(str(self.board.numRows)) == 2:
             print(" ", end='')
         print("1 ", end='')
-        for x in range(self.board.numRows):
-            for y in range(self.board.numColumns):
+        for y in range(self.board.numRows):
+            for x in range(self.board.numColumns):
                 print(self.board.table[x][y], end='')
-                if y == self.board.numColumns - 1:
+                if x == self.board.numColumns - 1:
                     print("\n", end='')
-                    if x != self.board.numRows - 1:
-                        if len(str(self.board.numRows)) == 2 and len(str(x + 2)) != 2:
+                    if y != self.board.numRows - 1:
+                        if len(str(self.board.numRows)) == 2 and len(str(y + 2)) != 2:
                             print(" ", end='')
-                        print(x + 2, end='')
+                        print(y + 2, end='')
                         print(" ", end='')
