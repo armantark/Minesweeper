@@ -46,7 +46,7 @@ class Game:
                 customrows = input("Number rows (can only be 2 digit number): ")
             while not customcols.isnumeric() or len(customcols) > 2:
                 customcols = input("Number columns (can only be 2 digit number): ")
-            while not custommines.isnumeric() or int(custommines) > int(customcols) * int(customrows):
+            while not custommines.isnumeric() or int(custommines) > int(customcols) * int(customrows) - 1:
                 custommines = input("Number mines (cannot be more than rows * cols): ")
             self.board = Board(int(customrows), int(customcols), int(custommines))
 
