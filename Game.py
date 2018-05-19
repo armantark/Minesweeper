@@ -83,7 +83,7 @@ class Game:
                                 print(self.board)
                             except TypeError:
                                 pass
-                            print("Game over!\n")
+                            print("Game over!")
                             break
                     except IndexError:
                         print("Bad coords!")
