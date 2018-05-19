@@ -39,11 +39,11 @@ class Board:
             print(" ", end='')
         for i in range(self.numColumns):
             if len(str(i + 1)) == 2:
-                print(Back.RED + Fore.YELLOW, end='')
+                print(Fore.RED + Back.YELLOW, end='')
                 print(str(i + 1)[0], end='')
                 print(Style.RESET_ALL, end='')
             else:
-                print(Back.RED + Fore.YELLOW, end='')
+                print(Fore.RED + Back.YELLOW, end='')
                 print(i + 1, end='')
                 print(Style.RESET_ALL, end='')
             print(" ", end='')
@@ -55,7 +55,7 @@ class Board:
                 print(" ", end='')
             for i in range(self.numColumns):
                 if len(str(i + 1)) == 2:
-                    print(Back.RED + Fore.YELLOW, end='')
+                    print(Fore.RED + Back.YELLOW, end='')
                     print(str(i + 1)[1], end='')
                     print(Style.RESET_ALL, end='')
                 else:
@@ -64,7 +64,7 @@ class Board:
         print("\n")
         if len(str(self.numRows)) == 2:
             print(" ", end='')
-        print(Back.RED + Fore.YELLOW, end='')
+        print(Fore.RED + Back.YELLOW, end='')
         print("1", end='')
         print(Style.RESET_ALL + " ", end='')
         for y in range(self.numRows):
@@ -75,7 +75,7 @@ class Board:
                     if y != self.numRows - 1:
                         if len(str(self.numRows)) == 2 and len(str(y + 2)) != 2:
                             print(" ", end='')
-                        print(Back.RED + Fore.YELLOW, end='')
+                        print(Fore.RED + Back.YELLOW, end='')
                         print(y + 2, end='')
                         print(Style.RESET_ALL, end='')
                         print(" ", end='')
