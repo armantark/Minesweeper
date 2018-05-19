@@ -79,7 +79,10 @@ class Game:
                     try:
                         self.board.table[x][y].open()
                         if self.board.table[x][y].hasMine:
-                            print(self.board)
+                            try:
+                                print(self.board)
+                            except TypeError:
+                                pass
                             print("Game over!\n")
                             break
                     except IndexError:
