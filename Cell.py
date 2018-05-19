@@ -1,5 +1,5 @@
 import Board
-from colorama import Fore, Back
+from colorama import Fore, Back, Style
 
 
 class Cell:
@@ -134,4 +134,4 @@ class Cell:
                     color = Back.GREEN + Fore.RED
                 elif self.numberOfMines == 8:
                     color = Back.YELLOW + Fore.MAGENTA
-                return color + str(self.numberOfMines) + " " + Fore.RESET
+                return color + str(self.numberOfMines) + " " + Style.RESET_ALL
