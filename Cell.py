@@ -1,4 +1,5 @@
 import Board
+from colorama import Fore, Back
 
 
 class Cell:
@@ -114,4 +115,23 @@ class Cell:
             if self.hasMine:
                 return "☼ "
             else:
-                return str(self.numberOfMines) + " "
+                color = ""
+                if self.numberOfMines == 0:
+                    color = Fore.RED
+                elif self.numberOfMines == 1:
+                    color = Fore.GREEN
+                elif self.numberOfMines == 2:
+                    color = Fore.YELLOW
+                elif self.numberOfMines == 3:
+                    color = Fore.BLUE
+                elif self.numberOfMines == 4:
+                    color = Fore.MAGENTA
+                elif self.numberOfMines == 5:
+                    color = Fore.CYAN
+                elif self.numberOfMines == 6:
+                    color = Fore.WHITE
+                elif self.numberOfMines == 7:
+                    color = Back.GREEN + Fore.RED
+                elif self.numberOfMines == 8:
+                    color = Back.YELLOW + Fore.MAGENTA
+                return color + str(self.numberOfMines) + " " + Fore.RESET

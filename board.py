@@ -31,6 +31,7 @@ class Board:
             for x in range(self.numColumns):
                 self.table[x][y].calculateNumberOfMines()
 
+    # this is f**ky, fix later
     def __str__(self):
         print("  ", end='')
         if len(str(self.numRows)) == 2:
