@@ -79,6 +79,10 @@ class Game:
                     try:
                         self.board.table[x][y].open()
                         if self.board.table[x][y].hasMine:
+                            for y in range(self.board.numRows):
+                                for x in range(self.board.numColumns):
+                                    if self.board.table[x][y].hasMine:
+                                        self.board.table[x][y].open()
                             try:
                                 print(self.board)
                             except TypeError:
