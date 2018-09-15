@@ -58,8 +58,6 @@ class Cell:
                 pass
         except IndexError:
             pass
-        except AttributeError:
-            pass
 
     def open(self):
         if self.hasFlag:
@@ -74,28 +72,28 @@ class Cell:
                 try:
                     if y - 1 >= 0:
                         if x - 1 >= 0:
-                            Cell.open(self.board.table[x - 1][y - 1])  # nw
-                        Cell.open(self.board.table[x - 0][y - 1])  # w
+                            self.board.table[x - 1][y - 1].open()  # nw
+                        self.board.table[x - 0][y - 1].open()  # w
                         try:
-                            Cell.open(self.board.table[x + 1][y - 1])  # sw
+                            self.board.table[x + 1][y - 1].open()  # sw
                         except IndexError:
                             pass
                     if x - 1 >= 0:
-                        Cell.open(self.board.table[x - 1][y - 0])  # n
+                        self.board.table[x - 1][y - 0].open()  # n
                         try:
-                            Cell.open(self.board.table[x - 1][y + 1])  # ne
+                            self.board.table[x - 1][y + 1].open()  # ne
                         except IndexError:
                             pass
                     try:
-                        Cell.open(self.board.table[x + 1][y + 1])  # se
+                        self.board.table[x + 1][y + 1].open()  # se
                     except IndexError:
                         pass
                     try:
-                        Cell.open(self.board.table[x + 1][y - 0])  # s
+                        self.board.table[x + 1][y - 0].open()  # s
                     except IndexError:
                         pass
                     try:
-                        Cell.open(self.board.table[x - 0][y + 1])  # e
+                        self.board.table[x - 0][y + 1].open()  # e
                     except IndexError:
                         pass
                 except IndexError:
