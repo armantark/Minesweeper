@@ -93,7 +93,7 @@ class Cell:
                     except IndexError:
                         pass
                     try:
-                        self.board.table[x - 0][y + 1].open()  # e
+                        self.board.table[x - 0][y + 1]  # e
                     except IndexError:
                         pass
                 except IndexError:
